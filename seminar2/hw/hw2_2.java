@@ -6,39 +6,85 @@
 
 package seminar2.hw;
 
+import java.io.FileWriter;
+import java.io.IOException;
+//import java.util.ArrayList;
+import java.util.Arrays;
+
 public class hw2_2 {
     /**
      * @param args
+     * @throws IOException
      */
-    public static void main(String[] args) {
-        StringBuilder res = new StringBuilder();
-        res.append("WHERE ");
-        String js = "{\"name\":\"Ivanov\", \"country\":\"Russia\", \"city\":\"Moscow\", \"age\":\"null\"}";
+    public static void main(String[] args) throws IOException {
+        //Создает файл логирования, для добавления записей об операциях по сортировке массива.
+        FileWriter fr1;
+        try {
+            fr1 = new FileWriter("./hw2_2.log", true);
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+            return;
+        }
+
+        //Создаем массив наполненный случайными числами
+        int N = 10;
+        int MaxVal = 20;
+        int[] ls = new int[N];
+        for (int i=0;i<N;i++) {
+            //добавляем в массив случайное число
+            ls[i]=rnd(1,MaxVal);
+        }
+        //Выводим на экран исходный массив и в лог-файл записываем
+        String s1 = Arrays.toString(ls);
+        System.out.println("\nИсходный массив:\n" + s1);
+        fr1.append("\nИсходный массив:\n" + s1 + "\n");
+
+        //признак обмена местами элементов при одном проходе массива
+        boolean isChanged = false;
+        //Сортируем массив методом пузырька с логированием каждого шага
         
-        if (Character.toString(js.charAt(0)).equals("{") && 
-            Character.toString(js.charAt(js.length()-1)).equals("}")  ) {
-            //убираем {} в исходной строке
-            js = js.substring(1, js.length() - 1);
-            //разбиваем json-строку через разделитель ",", получаем массив параметров qls
-            String[] qls = js.split(",");
-            for (int i = 0; i < qls.length; i++) {
-                //каждый параметр - делаем trim  и расщепляем через :
-                String[] curp = qls[i].trim().split(":");
-                //параметры со значением null пропускаем
-                if (!curp[1].trim().equals("\"null\"")) {
-                    //в названии параметра убираем ""
-                    curp[0] = curp[0].replaceAll("\"", "");
-                    if (i == 0) {
-                        //первый параметр выводим без разделителя AND
-                        res.append(curp[0].trim() + "=" + curp[1].trim());
-                    } else {
-                        res.append(" AND " + curp[0].trim() + "=" + curp[1].trim());
+        for (int j=1;j<N;j++) {
+            isChanged = false;
+            for (int i=0;i<N-j;i++) {
+                if (ls[i]>ls[i+1]) {
+                    int tmp = ls[i];
+                    ls[i] = ls[i+1];
+                    ls[i+1] = tmp;
+                    isChanged = true;
+                    //запись в лог-файл выполненной операции
+                    try {
+                        s1 = "перестановка элементов: ls[" + (i) + "]=" + ls[i] + " и ls[" + (i+1) + "]=" + ls[i+1] + "\n";
+                        System.out.printf(s1);
+                        fr1.append(s1);
                     }
+                    catch (Exception e) {
+                        System.out.println("Ошибка записи в файл лога");
+                        return;
+                    }
+
                 }
             }
-        } else {
-            System.out.println("Исходная строка не является json-строкой. Выполнение программы прервано!");
+            // если на шаге не было перестановок, то массив уже отсортирован,
+            // прекращам досрочно выполнение цикла
+            if (!isChanged) break;
         }
-        System.out.println(res);
+        
+        //Выводим на экран исходный массив и в лог-файл записываем
+        s1 = Arrays.toString(ls);
+        System.out.println("Сортировка выполнена. Конечный массив:\n" + s1);
+        fr1.append("Сортировка выполнена. Конечный массив:\n" + s1);
+        fr1.close();
     }
+
+    public static int rnd(int min, int max)
+    {
+        max -= min;
+        double curval = Math.random();
+        curval *= max;
+        curval += min;
+        int res = (int) (curval);
+        return res;
+    }
+    
 }
