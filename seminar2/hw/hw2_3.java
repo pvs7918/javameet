@@ -1,52 +1,92 @@
 /*
-3** Дана json строка (можно сохранить в файл и читать из файла)
+3.	В файле содержится строка с данными:
 [{"фамилия":"Иванов","оценка":"5","предмет":"Математика"},
 {"фамилия":"Петрова","оценка":"4","предмет":"Информатика"},
 {"фамилия":"Краснов","оценка":"5","предмет":"Физика"}]
-Написать метод(ы), который распарсит json и, используя StringBuilder,
-создаст строки вида: Студент [фамилия] получил [оценка] по предмету [предмет].
-Пример вывода:
+Напишите метод, который разберёт её на составные части и,
+используя StringBuilder создаст массив строк такого вида:
 Студент Иванов получил 5 по предмету Математика.
 Студент Петрова получил 4 по предмету Информатика.
 Студент Краснов получил 5 по предмету Физика.
-
 * */
 
 package seminar2.hw;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class hw2_3 {
     /**
      * @param args
      */
     public static void main(String[] args) {
-        StringBuilder res = new StringBuilder();
-        res.append("WHERE ");
-        String js = "{\"name\":\"Ivanov\", \"country\":\"Russia\", \"city\":\"Moscow\", \"age\":\"null\"}";
-        
-        if (Character.toString(js.charAt(0)).equals("{") && 
-            Character.toString(js.charAt(js.length()-1)).equals("}")  ) {
-            //убираем {} в исходной строке
-            js = js.substring(1, js.length() - 1);
-            //разбиваем json-строку через разделитель ",", получаем массив параметров qls
-            String[] qls = js.split(",");
-            for (int i = 0; i < qls.length; i++) {
-                //каждый параметр - делаем trim  и расщепляем через :
-                String[] curp = qls[i].trim().split(":");
-                //параметры со значением null пропускаем
-                if (!curp[1].trim().equals("\"null\"")) {
-                    //в названии параметра убираем ""
-                    curp[0] = curp[0].replaceAll("\"", "");
-                    if (i == 0) {
-                        //первый параметр выводим без разделителя AND
-                        res.append(curp[0].trim() + "=" + curp[1].trim());
-                    } else {
-                        res.append(" AND " + curp[0].trim() + "=" + curp[1].trim());
-                    }
+        // Читаем исходную json-строку из файла
+        String json = "";
+        try {
+            FileReader fr1 = new FileReader("./seminar2/hw/hw2_3.json");
+            Scanner scan = new Scanner(fr1);
+
+            if (scan.hasNextLine()) {
+                json = scan.nextLine();
+            }
+            fr1.close();
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("Исходная json-строка:");
+        System.out.println(json);
+
+        // разбиваем json-строку, формируем список строк заключенные в { }
+        ArrayList<String> persons = new ArrayList<>();
+        int begin = 0;
+        int end = 0;
+        do {
+            begin = json.indexOf('{', end);
+            if (begin > 0) {
+                end = json.indexOf('}', begin);
+                if (end > 0) {
+                    persons.add(json.substring(begin + 1, end - 1));
                 }
             }
-        } else {
-            System.out.println("Исходная строка не является json-строкой. Выполнение программы прервано!");
+        } while (begin > 0);
+
+        // формируем массив строк
+        ArrayList<String> resArr = new ArrayList<>();
+
+        for (int i = 0; i < persons.size(); i++) {
+            // обрезаем подстроку по фигурные скобки и делаем split
+            StringBuilder curstr = new StringBuilder();
+            String[] params = persons.get(i).split(",");
+
+            for (int j = 0; j < params.length; j++) {
+                // каждый параметр - делаем trim и расщепляем через :
+                String[] substr = params[j].trim().split(":");
+
+                // в названии параметра убираем ""
+                String tmpkey = substr[0].replaceAll("\"", "");
+                String tmpvalue = substr[1].trim().replaceAll("\"", "");
+
+                // формируем предложение
+                // образец: Студент Краснов получил 5 по предмету Физика.
+                if (tmpkey.equals("фамилия")) {
+                    curstr.append("Студент " + tmpvalue);
+                } else if (tmpkey.equals("оценка")) {
+                    curstr.append(" получил " + tmpvalue);
+                } else if (tmpkey.equals("предмет")) {
+                    curstr.append(" по предмету " + tmpvalue + ".");
+                }
+            }
+            // добавляем полученную строку в массив строк
+            resArr.add(curstr.toString());
         }
-        System.out.println(res);
+
+        // вывод результата
+        System.out.println("Результат:");
+        for (String item : resArr) {
+            System.out.println(item);
+        }
     }
 }

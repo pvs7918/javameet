@@ -20,7 +20,7 @@ public class hw2_2 {
         //Создает файл логирования, для добавления записей об операциях по сортировке массива.
         FileWriter fr1;
         try {
-            fr1 = new FileWriter("./hw2_2.log", true);
+            fr1 = new FileWriter("./seminar2/hw/hw2_2.log", true);
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
