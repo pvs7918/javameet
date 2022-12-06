@@ -6,7 +6,7 @@
 
 
  */
-package seminary3.lesson;
+package seminar3_old.lesson;
 
 import java.util.ArrayList;
 import java.util.Scanner;

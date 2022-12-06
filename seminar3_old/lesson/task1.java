@@ -4,7 +4,7 @@
  чередующихся символов c1 и c2, начиная с c1
 
  */
-package seminary3.lesson;
+package seminar3_old.lesson;
 
 import java.util.Scanner;
 

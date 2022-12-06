@@ -5,7 +5,7 @@
 
 
  */
-package seminary3.lesson;
+package seminar3_old.lesson;
 
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;

@@ -1,36 +1,43 @@
 /*
-1.	Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список.
+1.	Пусть дан LinkedList с несколькими элементами. Реализуйте метод,
+который вернет “перевернутый” список.
  */
 package seminar4.hw;
 
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class task1 {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        LinkedList<String> lst = new LinkedList<>();
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Введите значение вида text~num:");
-            String input = scanner.nextLine();
-
-            String[] substr = input.split("~");
-            int index = Integer.parseInt(substr[1]);
-
-            if (index > lst.size() || index < 0) {
-                System.out.println("некорректное значение num");
-            } 
-            else if (substr[0].equals("print")) 
-            {
-                System.out.println(lst.get(index));
-                lst.remove(index);
-            } else {
-                lst.add(index, substr[0]);
-            }
-
-            System.out.println(lst);
+        // Создаем и наполняем случайными значениями исходный LinkedList
+        int Count = 7;
+        int MaxValue = 10;
+        LinkedList<Integer> lst = new LinkedList<>();
+        for (int i = 0; i < Count; i++) {
+            lst.add(new Random().nextInt(MaxValue));
         }
-        scanner.close();
+        System.out.println("Исходный список:");
+        System.out.println(lst);
+
+        // Вызываем метод переворачивающий список
+        LinkedList<Integer> newLst = turnLinkedList(lst);
+
+        System.out.println("Результат - перевернутый список:");
+        System.out.println(newLst);
+    }
+
+    public static LinkedList<Integer> turnLinkedList(LinkedList<Integer> lst) {
+        // метод переворачивает список через стек
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        // помещаем значения из исходного списка в стек
+        for (var item : lst) {
+            stack.addLast(item.intValue());
+        }
+
+        LinkedList<Integer> newLst = new LinkedList<>();
+        while (!stack.isEmpty()) {
+            newLst.add(stack.pollLast());
+        }
+        return newLst;
     }
 }
