@@ -2,7 +2,7 @@
 
 package lection5;
 
-import java.util.*;
+//import java.util.*;
 
 /**
  * program

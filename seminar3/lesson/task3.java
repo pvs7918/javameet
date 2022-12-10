@@ -11,16 +11,20 @@ import java.util.ArrayList;
 
 public class task3 {
     public static void main(String[] args) {
-        ArrayList<String> ls = new ArrayList<>();
+        ArrayList ls = new ArrayList<String>();
         ls.add("первый");
-        ls.add("2");
-        ls.add("третий");
+        ls.add(2);
+        ls.add(22);
+        ls.add(23);
+        ls.add("Третий");
+        ls.add(4);
+        ls.add(56);
         System.out.println(ls);
 
         for (int i = 0; i< ls.size();i++) {
             Object c = ls.get(i);
             if (c instanceof Integer) {
-                ls.remove(i);
+                ls.remove(i--);
             }
         }
         System.out.println(ls);

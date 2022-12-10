@@ -30,6 +30,7 @@ public class task3 {
     }
 
     public static Long convertToArabian(String strIn) {
+        //функция переовдит римское число в арабское
         long Res = 0;
 
         Map<Character, Integer> romaningLetters = new HashMap<>();

@@ -1,7 +1,7 @@
 //Хранение и обработка данных
 
 package lection4;
-
+/* 
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -9,13 +9,13 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 
-/**
- * program
- */
+
+  program
+ 
 public class program {
 
     public static void main(String[] args) {
-  /*       //типы коллекций
+       //типы коллекций
         
         //односвязный список
         ArrayList<Integer> ar = new ArrayList<>();
@@ -40,6 +40,6 @@ public class program {
         //извлечь из стека
         int k = st.pop();
         //положить в стек
-        st.push(11);*/
+        st.push(11);
     }
-}
+} */
