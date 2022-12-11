@@ -11,15 +11,18 @@ public class task4 {
      */
     public static void main(String[] args) {
 
-        // список вариантов расположения ферзей на доске: 18 25 34 46 53 67 71 82 -
+        // список вариантов расположения ферзей на доске: [0, 4, 7, 5, 2, 6, 1, 3] -
         // такая запись варианта
         // использование Set позволяет исключить дубли вариантов
 
-        // текущий вариант положения ферзей на доске. номер ферзя определяем ряд.
+        // текущий вариант положения ферзей на доске. номер ферзя определяет ряд.
         // нумеруем с 0
         int[] position = new int[8];
-        long positionCount = 0;
-        Set<String> trueVariants = new HashSet<String>();
+        long positionCount = 1;
+        //сначала использовал HashSet, но он выводится не отсортированный,
+        //поэтому перешел на TreeSet, в нем варианты распологаются также как и добавляются
+        // - упорядочено
+        Set<String> trueVariants = new TreeSet<String>();
         boolean isPresentPos = false;
         boolean checkPositionResult;
 
@@ -38,8 +41,6 @@ public class task4 {
             // считаем количество всех позиций
             if (isPresentPos) {
                 positionCount++;
-            } else {
-                System.out.println("111");
             }
         } while (isPresentPos);
 
@@ -51,7 +52,7 @@ public class task4 {
     }
 
     public static boolean test() {
-        // Для отладки функции checkPosition
+        // Для отладки функции checkPosition на конкретном правильном примере
         int[] position = new int[] { 0, 4, 7, 5, 2, 6, 1, 3 };
         return checkPosition(position);
     }
@@ -132,14 +133,15 @@ public class task4 {
         // если варианты закончились возвращает false, иначе возвращает true
         // меняем положение в исходном массиве
 
-        // признак наличия найденного варианта
         int size = 8;
         int i = size - 1;
+        //в массиве position ищем, начиная с конца, первое число < 7
         while (i >= 0 && position[i] == size - 1) {
             i--;
         }
 
         if (i >= 0) {
+            //найденное число меньшее 7 увеличиваем на 1, а цифры правее (семерки) обнуляем
             position[i]++;
             for (int j = i + 1; j < size; j++) {
                 position[j] = 0;
