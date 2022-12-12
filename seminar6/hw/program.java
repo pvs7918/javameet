@@ -117,70 +117,65 @@ public class program {
                 System.out.println("Выполнен выход из поиска.");
                 break;
             }
-            // Делаем копию исходного набора, в целях дальнейшей фильтрации
-            Set<Laptop> curSet = srcSet;
             criteria = input.trim().toUpperCase().split(" ");
-            // формируем словарь критериев фильтрации
-            // формируем по выбранным критериям map значений критериев. Пример:
-            /*
-             * Map Model: "ACER"
-             * volumeRAM: 5
-             * color: black
-             * price: 23000
-             */
-
+                        
             Map<String, String> params = new HashMap<>(criteria.length);
             for (int i = 0; i < criteria.length; i++) {
                 String criteriaNum = criteria[i];
                 System.out.printf("Задайте фильтр [%s] - %s: ", criteriaNum, paramName.get(criteriaNum));
                 input = scanner.nextLine();
                 params.put(criteriaNum, input);
+            }
+            
+            // создаем пустой набор resSet, туда поместим результаты успешного выбора записей.
+            Set<Laptop> resSet = new LinkedHashSet<Laptop>();
 
-                // к curSet в цикле применяем поочередно фильтры, делая таким образом операцию
-                // AND.
-                // Промежуточный результат ложим в resSet, потом curSet=resSet,
-                // чтобы опять прогнать curSet через следующий фильтр.
-                Set<Laptop> resSet = new HashSet<Laptop>();
-                for (Laptop item : curSet) {
-                    switch (criteriaNum) {
+            // результат фильтрации ложим в resSet
+            for (Laptop item : srcSet) {
+                // к сущности применяем все заданные фильтры. Если хотя был один параметр не подошел,
+                // элемент отсеивается
+                boolean itFits = true;
+                for (Map.Entry<String, String> curparam : params.entrySet()){
+                    switch (curparam.getKey()) {
                         case "1":
-                            if (item.getModel().toUpperCase().contains(params.get(criteriaNum).toUpperCase()))
-                                resSet.add(item);
+                            if (! item.getModel().toUpperCase().contains(curparam.getValue().toUpperCase()))
+                                itFits = false;
                             break;
                         case "2":
-                            if (item.getVolumeRAM() >= Integer.parseInt(params.get(criteriaNum)))
-                                resSet.add(item);
+                            if (item.getVolumeRAM() < Integer.parseInt(curparam.getValue()))
+                                itFits = false;
                             break;
                         case "3":
-                            if (item.getVolumeHDD() >= Integer.parseInt(params.get(criteriaNum)))
-                                resSet.add(item);
+                            if (item.getVolumeHDD() < Integer.parseInt(curparam.getValue()))
+                                itFits = false;
                             break;
                         case "4":
-                            if (item.getTypeOS().toUpperCase().contains(params.get(criteriaNum).toUpperCase()))
-                                resSet.add(item);
+                            if (!item.getTypeOS().toUpperCase().contains(curparam.getValue().toUpperCase()))
+                                itFits = false;
                             break;
                         case "5":
-                            if (item.getColor().toUpperCase().contains(params.get(criteriaNum).toUpperCase()))
-                                resSet.add(item);
+                            if (!item.getColor().toUpperCase().contains(curparam.getValue().toUpperCase()))
+                                itFits = false;
                             break;
                         case "6":
-                            if (item.getPrice() >= (float) Double.parseDouble(params.get(criteriaNum)))
-                                resSet.add(item);
+                            if (item.getPrice() < (float) Double.parseDouble(curparam.getValue()))
+                                itFits = false;
                             break;
                         case "7":
-                            if (item.getStatus().toUpperCase().contains(params.get(criteriaNum).toUpperCase()))
-                                resSet.add(item);
+                            if (!item.getStatus().toUpperCase().contains(curparam.getValue().toUpperCase()))
+                                itFits = false;
                             break;
                     }
                 }
-                curSet = resSet;
+                if (itFits) 
+                    resSet.add(item);
             }
             // выводим результат фильтрации
             System.out.println("\n<<<<<<<<<<<<<<< Результат применения фильтра(ов) >>>>>>>>>>>>>>>");
-            for (Laptop item : curSet) {
+            for (Laptop item : resSet) 
                 System.out.println(item);
-            }
         }
         scanner.close();
     }
 }
+
