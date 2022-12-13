@@ -134,7 +134,7 @@ public class program {
             for (Laptop item : srcSet) {
                 // к сущности применяем все заданные фильтры. Если хотя был один параметр не подошел,
                 // элемент отсеивается
-                boolean itFits = true;
+                boolean itFits = true; //признак успешной фильтрации (подходит/неподходит)
                 for (Map.Entry<String, String> curparam : params.entrySet()){
                     switch (curparam.getKey()) {
                         case "1":
@@ -167,7 +167,7 @@ public class program {
                             break;
                     }
                 }
-                if (itFits) 
+                if (itFits) //это подходит
                     resSet.add(item);
             }
             // выводим результат фильтрации
