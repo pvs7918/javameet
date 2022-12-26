@@ -20,7 +20,15 @@ public class StudentGroup {
 		return students.get(index);
 	}
 
+	public void add(Student e) {
+        students.add(e);
+    }
+
 	public Iterator<Student> descendingIterator() {
 		return new ReverseIterator(this);
+	}
+
+	public ListIterator<Student> listIterator(int index) {
+		return new GroupListIterator(this, index);
 	}
 }

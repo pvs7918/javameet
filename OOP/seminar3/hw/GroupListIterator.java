@@ -7,7 +7,8 @@ public class GroupListIterator implements ListIterator<Student> {
     private int index = 0;
     private StudentGroup studGroup;
 
-    public GroupListIterator(StudentGroup studGroup) {
+    public GroupListIterator(StudentGroup studGroup, int index) {
+        this.index = index;
         this.studGroup = studGroup;
     }
 
@@ -15,39 +16,46 @@ public class GroupListIterator implements ListIterator<Student> {
     public boolean hasNext() {
         return index < studGroup.size();
     }
+    
+    @Override
+    public boolean hasPrevious() {
+        return index > -1;
+    }
 
     @Override
     public Student next() {
         index++;
         if (hasNext())
             return studGroup.get(index);
-    }
-
-    @Override
-    public boolean hasPrevious() {
-        // TODO Auto-generated method stub
-        return false;
+        else
+            return null;
     }
 
     @Override
     public Student previous() {
-        // TODO Auto-generated method stub
-        return null;
+        index--;
+        if (hasPrevious())
+            return studGroup.get(index);
+        else
+            return null;
     }
 
     @Override
     public int nextIndex() {
-        // TODO Auto-generated method stub
-        return 0;
+        return ++index;
     }
 
     @Override
     public int previousIndex() {
-        // TODO Auto-generated method stub
-        return 0;
+        return --index;
     }
 
     @Override
+    public void add(Student e) {
+        studGroup.add(e);
+    }
+
+    /*@Override
     public void remove() {
         // TODO Auto-generated method stub
         
@@ -57,12 +65,6 @@ public class GroupListIterator implements ListIterator<Student> {
     public void set(Student e) {
         // TODO Auto-generated method stub
         
-    }
-
-    @Override
-    public void add(Student e) {
-        // TODO Auto-generated method stub
-        
-    }
+    }*/    
     
 }
