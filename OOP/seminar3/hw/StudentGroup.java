@@ -20,7 +20,6 @@ public class StudentGroup {
 		return students.get(index);
 	}
 
-	@Override
 	public Iterator<Student> descendingIterator() {
 		return new ReverseIterator(this);
 	}
