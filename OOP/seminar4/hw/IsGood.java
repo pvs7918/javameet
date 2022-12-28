@@ -6,5 +6,5 @@ boolean isGood (T item);
 package OOP.seminar4.hw;
 
 public interface IsGood<T> {
-    boolean isGood (T item);
+    boolean isGood(T item);
 }

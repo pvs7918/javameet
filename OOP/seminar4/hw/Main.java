@@ -22,23 +22,53 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(
-                1, 3, 5, 7, 9, 0, 2, 10, 15, 65);
+                1, -12, 5, -7, 9, 0, 2, 10, 15, 65);
         List<String> names = Arrays.asList(
-                "Иван", "Степан", "Павел", "Дмитрий", "Александр", "Евгений");
+                "Иван", "Алексей", "Павел", "Антон", "Александр", "Евгений");
 
-        System.out.println("Исходные списки:");
-        for(Integer number: numbers)
+        System.out.println("Исходный список #1(int):");
+        for (Integer number : numbers)
             System.out.println(number);
 
-        //Фильтруем и выводим отфильтрованные списки
-        IsEven even = new IsEven<>();
-        List<Integer> evenNumbers = filter(numbers, even);
+        // применяем фильтр isEven только четные числа
+        Iterable<Integer> evenNumbers = filter(numbers, new IsEven());
+        System.out.println("Отфильтрованный список #1 -только целые:");
+        for (Integer number : evenNumbers)
+            System.out.println(number);
+
+        // применяем фильтр isPositive только четные числа
+        Iterable<Integer> positiveNumbers = filter(numbers, new IsPositive());
+        System.out.println("Отфильтрованный список #1 -только положительные:");
+        for (Integer number : positiveNumbers)
+            System.out.println(number);
+
+        System.out.println("Исходный список #2(String):");
+        for (String name : names)
+            System.out.println(name);
+
+        // применяем фильтр BeginsWith только четные числа
+        String sample = "Алекс";
+        Iterable<String> filteredNames = filter(names, new BeginsWith(sample));
+        System.out.println("Отфильтрованный список #2 - начинаются с \"" + sample + "\"");
+        for (String name : filteredNames)
+            System.out.println(name);
+
+        // применяем фильтр BeginsWithA только четные числа
+        Iterable<String> filteredNames2 = filter(names, new BeginsWithA());
+        System.out.println("Отфильтрованный список #2 - начинаются с A");
+        for (String name : filteredNames2)
+            System.out.println(name);
     }
 
-    public static <T> List<T> filter(List<T> list, IsGood<T> approver) {
+    // filter - Обобщенный метод фильтрации списков с помощью одобрятеля approver
+    // имеющего разные типы фильтрации, реализованные с помощью классов, наследуемых
+    // от интерфейса isGood
+    public static <T> Iterable<T> filter(Iterable<T> list, IsGood<T> approver) {
+        // вместо List используем Iterable, потому что все коллекции наследуют от
+        // Iterable
         List<T> resList = new ArrayList<>();
-        for(T listItem: list) {
-            if(approver.isGood(listItem))
+        for (T listItem : list) {
+            if (approver.isGood(listItem))
                 resList.add(listItem);
         }
         return resList;

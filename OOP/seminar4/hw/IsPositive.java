@@ -4,13 +4,13 @@
  */
 package OOP.seminar4.hw;
 
-public class IsEven<T> implements IsGood {
-    public IsEven() {
+public class IsPositive implements IsGood {
+    public IsPositive() {
     }
 
     @Override
     public boolean isGood(Object item) {
-        if ((int) item % 2 == 0)
+        if ((int) item > 0)
             return true;
         return false;
     }

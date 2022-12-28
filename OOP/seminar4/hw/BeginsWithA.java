@@ -5,12 +5,9 @@
  */
 package OOP.seminar4.hw;
 
-public class BeginsWith<T> implements IsGood {
-    private String sample;
+public class BeginsWithA<T> implements IsGood {
 
-    public BeginsWith(String sample) {
-        // в конструкторе задаем шаблон для сравнения
-        this.sample = sample;
+    public BeginsWithA() {
     }
 
     @Override
@@ -19,7 +16,7 @@ public class BeginsWith<T> implements IsGood {
         // обратится к методу startsWith
 
         String curString = (String) item;
-        if (curString.startsWith(sample))
+        if (curString.startsWith("А"))
             return true;
         return false;
     }
