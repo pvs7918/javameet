@@ -21,8 +21,8 @@ public class StudentGroup {
 	}
 
 	public void add(Student e) {
-        students.add(e);
-    }
+		students.add(e);
+	}
 
 	public Iterator<Student> descendingIterator() {
 		return new ReverseIterator(this);

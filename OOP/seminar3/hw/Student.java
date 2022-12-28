@@ -3,7 +3,7 @@ package OOP.seminar3.hw;
 import java.time.LocalDate;
 
 public class Student {
-    private String name;
+	private String name;
 	private LocalDate date;
 	private float averageMark;
 
@@ -21,6 +21,4 @@ public class Student {
 				", averageMark=" + averageMark +
 				'}';
 	}
-
-
 }
