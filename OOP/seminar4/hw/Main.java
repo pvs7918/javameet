@@ -32,14 +32,15 @@ public class Main {
 
         //Фильтруем и выводим отфильтрованные списки
         IsEven even = new IsEven<>();
-        List<Integer> evenNumbers = filter(numbers, IsEven);
+        List<Integer> evenNumbers = filter(numbers, even);
     }
 
-    public <T> List<T> filter(List<T> list, IsGood<T> approver) {
+    public static <T> List<T> filter(List<T> list, IsGood<T> approver) {
         List<T> resList = new ArrayList<>();
         for(T listItem: list) {
             if(approver.isGood(listItem))
                 resList.add(listItem);
         }
+        return resList;
     }
 }
