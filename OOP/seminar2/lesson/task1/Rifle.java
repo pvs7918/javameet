@@ -1,4 +1,4 @@
-package lesson_2;
+package task1;
 
 public class Rifle extends Weapon {
 

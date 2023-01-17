@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package OOP.seminar1.lesson.task;
 
-import javax.swing.text.Position;
+import java.util.ArrayList;
 
 // Выявите и реализуйте классы для следующей задачи. 
 // Пропишите необходимый минимум полей и методов. Пока что оставьте методы пустыми.

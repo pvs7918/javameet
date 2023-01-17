@@ -1,4 +1,4 @@
-package Task0;
+package task0;
 
 public class SquareShape implements Shape {
     private float side;

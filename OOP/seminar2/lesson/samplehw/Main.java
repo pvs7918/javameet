@@ -1,4 +1,4 @@
-package OOP.seminar2.lesson.samplehw;
+package samplehw;
 
 
 public class Main {

@@ -1,4 +1,4 @@
-package OOP.seminar2.lesson.samplehw;
+package samplehw;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

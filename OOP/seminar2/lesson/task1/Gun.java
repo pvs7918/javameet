@@ -1,4 +1,4 @@
-package lesson_2;
+package task1;
 
 import java.net.SocketTimeoutException;
 

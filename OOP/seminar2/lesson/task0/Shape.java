@@ -1,4 +1,4 @@
-package Task0;
+package task0;
 
 public interface Shape {
     public abstract float getArea ();  // узнать площадь

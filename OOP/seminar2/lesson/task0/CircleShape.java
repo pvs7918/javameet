@@ -1,4 +1,4 @@
-package Task0;
+package task0;
 
 public class CircleShape implements Shape {
     private float radius;

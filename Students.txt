@@ -1,0 +1,4 @@
+Alex, 20, Male, IT-123
+Maks, 22, Male, E-157
+Sveta, 21, Female, S-295
+Maria, 19, Female, A-311
