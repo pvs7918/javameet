@@ -26,7 +26,7 @@ public class Student {
             if (attendance.getParam2())
                 percent++;
         }
-        return String.format("%s, %.1f", fio, percent / attendances.size());
+        return String.format("%s, %.1f%%", fio, 100 * percent / attendances.size());
     }
 
     @Override
