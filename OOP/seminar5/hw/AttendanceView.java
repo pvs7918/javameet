@@ -20,9 +20,8 @@ public class AttendanceView {
     public void ShowResult(List<Student> students) {
         System.out.println("\nВывод результата\n----------------");
         for (Student item : students) {
-            System.out.println(item.getFioWithAttendancePercent());
+            System.out.println(item.getFioAndAttendancePercent());
         }
     }
-
 
 }

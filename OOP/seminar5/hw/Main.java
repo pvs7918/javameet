@@ -18,15 +18,15 @@ package OOP.seminar5.hw;
 
 public class Main {
     public static void main(String[] args) {
-        //Создаем объект Модель
-        AttendanceService model = new AttendanceService("./OOP/seminar5/hw/students_read.txt");
-        //System.out.println(model); //вывод модели - дл отладки(тестирования)
+        // Создаем объект Модель
+        AttendanceService model = new AttendanceService("./OOP/seminar5/hw/students.txt");
 
-        //Создаем объекты View Presenter (MVP)
-        AttendanceView view = new AttendanceView ();
-        Presenter presenter = new Presenter (model, view);
-        presenter.run ();
-        
+        // Создаем объекты View Presenter (MVP)
+        AttendanceView view = new AttendanceView();
+        // Создаем презентер и запускаем его
+        Presenter presenter = new Presenter(model, view);
+        presenter.run();
+
     }
-    
+
 }

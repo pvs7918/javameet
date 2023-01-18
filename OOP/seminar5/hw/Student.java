@@ -20,13 +20,17 @@ public class Student {
         return attendances;
     }
 
-    public String getFioWithAttendancePercent() {
+    public double getAttendancePercent() {
         double percent = 0.0;
         for (Pair<LocalDate, Boolean> attendance : attendances) {
             if (attendance.getParam2())
                 percent++;
         }
-        return String.format("%s, %.1f%%", fio, 100 * percent / attendances.size());
+        return 100 * percent / attendances.size();
+    }
+
+    public String getFioAndAttendancePercent() {
+        return String.format("%s, %.1f%%", getFio(), getAttendancePercent());
     }
 
     @Override

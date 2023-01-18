@@ -21,7 +21,7 @@ public class AttendanceService {
 
     public void loadFormFile() {
         // считывание данных о студентах из файла
-        students = new ArrayList<>();
+        students = new LinkedList<>();
         // открываем и читаем данные из файла
 
         try (FileReader fr = new FileReader(filename)) {
@@ -40,17 +40,17 @@ public class AttendanceService {
                         attendances.add(new Pair(LocalDate.parse(curArray[0].trim()),
                                 Boolean.parseBoolean(curArray[1].trim())));
                     } else {
-                        //добавляем в список объект класса Student
+                        // добавляем в список объект класса Student
                         if (curFIO != "" && attendances.size() > 0) {
                             students.add(new Student(curFIO, attendances));
                             // после добавления записи ФИО обнуляем,
                             // чтобы предотвратить повторное добавление этой записи
-                            curFIO = ""; 
+                            curFIO = "";
                             break;
                         }
                     }
                 }
-                //добавляем в список объект класса Student
+                // добавляем в список объект класса Student
                 if (curFIO != "" && attendances.size() > 0) {
                     students.add(new Student(curFIO, attendances));
                     break;
@@ -58,13 +58,32 @@ public class AttendanceService {
             }
             scanner.close();
         } catch (Exception ex) {
-            ex.getStackTrace();
+            System.out.println(ex.toString());
         }
     }
 
-    //возврат полного списка студентов без фильтрации и доп.упорядочивания
-    public List<Student> getAllRecords() {
+    // возврат полного списка студентов без фильтрации и доп.упорядочивания
+    public List<Student> getAStudentsAll() {
         return students;
+    }
+
+    // возврат полного списка отсортированного по успеваемости по убыванию
+
+    public List<Student> getStudentsAllSortedDescByAttendance() {
+        Collections.sort(students, new StudentComparator()); // по убыванию
+        return students;
+    }
+
+    // выбирает студентов с посещаемостью ниже 25% (border).
+    public List<Student> getStudentsAttendanceLess(int border) {
+        List<Student> resList = new ArrayList<>();
+
+        for (Student item : students) {
+            if (item.getAttendancePercent() <= 25) {
+                resList.add(item);
+            }
+        }
+        return resList;
     }
 
     @Override

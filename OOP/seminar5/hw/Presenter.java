@@ -22,45 +22,44 @@ public class Presenter {
     public void run() {
         int menuItem = -1;
 
-        //загружаем данные в модель из файла
+        // загружаем данные в модель из файла
         model.loadFormFile();
 
         Scanner sc = new Scanner(System.in);
-        while(true) {
-            //выводим меню
+        while (true) {
+            // выводим меню
             view.showMenu();
-            //выбираем пункт меню
+            // выбираем пункт меню
             try {
                 System.out.printf("Введите число от 1 до 3: ");
                 if (sc.hasNextInt()) {
                     menuItem = sc.nextInt();
                     if (menuItem < 1 && menuItem > 3) {
-                        // -1 считается что пункт меню выбран неверно, меню загружается повтороно для выбора
+                        // -1 считается что пункт меню выбран неверно, меню загружается повтороно для
+                        // выбора
                         menuItem = -1;
                     }
-                }
-                else {
-                    //означает выход из программы
+                } else {
+                    // означает выход из программы
                     menuItem = 0;
-                    
+
                 }
-            }
-            catch (NoSuchElementException exception) {
+            } catch (NoSuchElementException exception) {
                 System.out.println("Ошибка чтения пункта меню");
             }
 
-            switch(menuItem) {
+            switch (menuItem) {
                 case 1:
                     showAllStudentsWithAttendance();
                     break;
                 case 2:
-                    //showAllStudentsWithAttendance();
+                    showAllStudentsSortDescByAttendance();
                     break;
                 case 3:
-                    //showAllStudentsWithAttendance();
+                    showAStudentsAttendanceLess(25);
                     break;
             }
-            if (menuItem == 0){
+            if (menuItem == 0) {
                 System.out.println("Программа завершена.");
                 break;
             }
@@ -68,8 +67,21 @@ public class Presenter {
         sc.close();
     }
 
-    //Распечатать всех студентов и посещаемость каждого в процентах
+    // Распечатать всех студентов и посещаемость каждого в процентах
     private void showAllStudentsWithAttendance() {
-        view.ShowResult(model.getAllRecords());
+        view.ShowResult(model.getAStudentsAll());
+    }
+
+    /*
+     * Распечатать студентов, отсортировав их по убыванию посещаемости
+     * (вверху самые посещающие);
+     */
+    private void showAllStudentsSortDescByAttendance() {
+        view.ShowResult(model.getStudentsAllSortedDescByAttendance());
+    }
+
+    // Распечатать студентов с посещаемостью ниже 25%.
+    private void showAStudentsAttendanceLess(int border) {
+        view.ShowResult(model.getStudentsAttendanceLess(border));
     }
 }
