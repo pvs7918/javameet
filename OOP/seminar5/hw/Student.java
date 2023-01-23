@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Student {
-    private String fio;
+    private String fullName;
     private List<Pair<LocalDate, Boolean>> attendances; // посещаемость студента (дата, был/не был)
 
-    public Student(String fio, List<Pair<LocalDate, Boolean>> attendances) {
-        this.fio = fio;
+    public Student(String fullName, List<Pair<LocalDate, Boolean>> attendances) {
+        this.fullName = fullName;
         this.attendances = attendances;
     }
 
-    public String getFio() {
-        return fio;
+    public String getFullName() {
+        return fullName;
     }
 
     public List<Pair<LocalDate, Boolean>> getAttendances() {
@@ -30,12 +30,12 @@ public class Student {
     }
 
     public String getFioAndAttendancePercent() {
-        return String.format("%s, %.1f%%", getFio(), getAttendancePercent());
+        return String.format("%s, %.1f%%", getFullName(), getAttendancePercent());
     }
 
     @Override
     public String toString() {
-        String res = "\nStudent: FIO=" + fio + ",\n";
+        String res = "\nStudent: FIO=" + fullName + ",\n";
         for (Pair<LocalDate, Boolean> attendance : attendances) {
             res += attendance.getParam1() + ", " + attendance.getParam2() + "\n";
         }

@@ -74,12 +74,12 @@ public class AttendanceService {
         return students;
     }
 
-    // выбирает студентов с посещаемостью ниже 25% (border).
+    // выбирает студентов с посещаемостью ниже чем border.
     public List<Student> getStudentsAttendanceLess(int border) {
         List<Student> resList = new ArrayList<>();
 
         for (Student item : students) {
-            if (item.getAttendancePercent() <= 25) {
+            if (item.getAttendancePercent() <= border) {
                 resList.add(item);
             }
         }

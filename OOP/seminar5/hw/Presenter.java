@@ -80,7 +80,7 @@ public class Presenter {
         view.ShowResult(model.getStudentsAllSortedDescByAttendance());
     }
 
-    // Распечатать студентов с посещаемостью ниже 25%.
+    // Распечатать студентов с посещаемостью ниже чем border%.
     private void showAStudentsAttendanceLess(int border) {
         view.ShowResult(model.getStudentsAttendanceLess(border));
     }
