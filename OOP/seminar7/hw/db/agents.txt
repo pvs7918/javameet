@@ -1,0 +1,9 @@
+id;agent_type;name;(products||birthdate)
+1;Company;FarEast Traiding Ltd.;Russia;Coal,Steel
+2;Company;Matsushita Corp.;Japan;Electronics,Computers
+3;Company;Papirus Ltd.;Russia;Paper,Carton
+4;Company;Guangzhou Qianxirui Trading Co., Ltd.;China;Clothes
+5;Person;Ivanov Ivan Ivanovich;1977-01-23
+6;Person;Stepanov Sergey Nikolaevich;1963-11-15
+7;Person;Sotnikova Maria Gennadjevna;1996-08-06
+8;Person;Dzen Li;1991-03-17

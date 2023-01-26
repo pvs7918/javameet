@@ -1,0 +1,19 @@
+id;agent_id;contact_type;value
+1;1;address;Russia,Vladivostok city, street Lenina, 75-19
+2;8;address;China,qiaozhong South Road, Liwan District, Guangzhou, 5
+3;6;address;Russia,Moscow city, street Bolshaya Dmitrovka, 2
+4;2;email;traiding@matsushita.jp
+5;1;email;contact@far-east.ru
+6;3;email;papirus@papirus.com
+7;5;email;ivanov.ii@gmail.com
+8;6;email;stepanov-19@mail.ru
+9;8;email;dzen.li@qq.com
+10;4;email;qianxirui@163.com
+11;1;phone;+79554156584
+12;5;phone;+79999999871
+13;4;phone;+862085185001
+14;6;telegram;@stepanov_sergey
+15;5;telegram;@ivanov
+16;8;telegram;@dzenli12
+17;7;vk;https://vk.com/id10635880
+18;3;vk;https://vk.com/id20565675
