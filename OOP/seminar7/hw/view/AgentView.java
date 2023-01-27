@@ -2,7 +2,7 @@ package OOP.seminar7.hw.view;
 
 import java.util.*;
 
-import OOP.seminar7.hw.classes.AgentA;
+import OOP.seminar7.hw.classes.Agent;
 
 public class AgentView {
 
@@ -18,9 +18,9 @@ public class AgentView {
         System.out.println("0. Выход.");
     }
 
-    public void ShowResult(List<AgentA> agents) {
+    public void ShowResult(List<Agent> agents) {
         System.out.println("\nВывод результата\n----------------");
-        for (AgentA item : agents) {
+        for (Agent item : agents) {
             System.out.println(item.toString());
             System.out.println("********************");
         }

@@ -23,7 +23,7 @@ public class ContactModel<Contact> implements DataModel{
     }
 
     @Override
-    public List<AgentA> load() {
+    public List<Agent> load() {
         // загрузка списка агентов из файла БД в agents
         agents = new LinkedList<>();
         // открываем и читаем данные из файла
@@ -46,12 +46,12 @@ public class ContactModel<Contact> implements DataModel{
                             String country = fields[3].trim();    
                             String products = fields[4].trim();
                             AgentCompany agentCompany = new AgentCompany(curId, curAgent_type, curName, null, country, products);
-                            agents.add((AgentA) agentCompany);
+                            agents.add((Agent) agentCompany);
                             break;
                         case ("Person"):
                             LocalDate birthdate = LocalDate.parse(fields[3].trim());
                             AgentPerson agentPerson = new AgentPerson(curId, curAgent_type, curName, null, birthdate);
-                            agents.add((AgentA) agentPerson);
+                            agents.add((Agent) agentPerson);
                             break;   
                         default:
                             System.out.println("Ошибка: Неизвестный тип объекта-контрагента" +
@@ -70,7 +70,7 @@ public class ContactModel<Contact> implements DataModel{
     }
 
     // возврат полного списка студентов без фильтрации и доп.упорядочивания
-    public List<AgentA> getAgentsAll() {
+    public List<Agent> getAgentsAll() {
         return agents;
     }
 

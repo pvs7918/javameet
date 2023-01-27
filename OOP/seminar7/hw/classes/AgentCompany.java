@@ -2,7 +2,7 @@ package OOP.seminar7.hw.classes;
 
 import java.util.*;
 
-public class AgentCompany extends AgentA {
+public class AgentCompany extends Agent {
     private String country;
     private String products; //названия товаров, которые продает компания-контрагент
 
@@ -12,11 +12,6 @@ public class AgentCompany extends AgentA {
         this.country = country;
         this.products = products;
     }
-    
-    /*@Override
-    public int getId() {
-        return super.id;
-    }*/
 
     public String getCountry() {
         return country;
