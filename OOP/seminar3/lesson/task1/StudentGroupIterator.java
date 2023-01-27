@@ -2,7 +2,7 @@ import java.util.Iterator;
 /*Для коллекции StudentGroup создайте парный класс итератора: StudentGroupIterator.
 Он реализует интерфейс Iterator<Student>. Он отслеживает текущую позицию в итерации.*/
 
-public class StudentGroupIterator implements Iterator<Student> {
+public class StudentGroupIterator implements Iterator<ContrAgent> {
 
 	private int index = -1;
 	private StudentGroup studentGroup;
@@ -17,7 +17,7 @@ public class StudentGroupIterator implements Iterator<Student> {
 	}
 
 	@Override
-	public Student next() {
+	public ContrAgent next() {
 		return studentGroup.get(++index);
 	}
 }

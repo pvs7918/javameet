@@ -1,11 +1,11 @@
 import java.util.Iterator;
 import java.util.List;
 
-public class StudentGroup implements Iterable<Student> {
+public class StudentGroup implements Iterable<ContrAgent> {
 
-	private List<Student> students;
+	private List<ContrAgent> students;
 
-	public StudentGroup(List<Student> students) {
+	public StudentGroup(List<ContrAgent> students) {
 		this.students = students;
 	}
 
@@ -13,12 +13,12 @@ public class StudentGroup implements Iterable<Student> {
 		return this.students.size();
 	}
 
-	public Student get(int index) {
+	public ContrAgent get(int index) {
 		return students.get(index);
 	}
 
 	@Override
-	public Iterator<Student> iterator() {
+	public Iterator<ContrAgent> iterator() {
 		return new StudentGroupIterator(this);
 	}
 }

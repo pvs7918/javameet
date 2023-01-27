@@ -5,7 +5,7 @@ import data.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentsService implements DataService <Student> {
+public class StudentsService implements DataService <ContrAgent> {
     private List<Student> students = new ArrayList<>();
 
     public StudentsService(List<Student> students) {

@@ -15,7 +15,6 @@ public abstract class AgentA implements Agent {
         this.contacts = contacts;
     }
     
-    @Override
     public int getId() {
         return id;
     }

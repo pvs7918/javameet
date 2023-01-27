@@ -11,10 +11,10 @@ public class AgentPerson extends AgentA {
         this.birthDate = birthDate;
     }
 
-    @Override
+    /*@Override
     public int getId() {
         return id;
-    }
+    }*/
 
     public LocalDate getBirthDate() {
         return birthDate;

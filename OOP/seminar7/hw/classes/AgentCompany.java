@@ -13,10 +13,10 @@ public class AgentCompany extends AgentA {
         this.products = products;
     }
     
-    @Override
+    /*@Override
     public int getId() {
         return super.id;
-    }
+    }*/
 
     public String getCountry() {
         return country;
