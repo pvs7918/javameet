@@ -55,9 +55,6 @@ public class Task1 {
     }
 
     public static void method3(String fileName) throws IOException {
-        // метод считывает и вывод в консоль файл построчно
-        // try {
-
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String fileString = reader.readLine();
         while (fileString != null) {
@@ -65,14 +62,5 @@ public class Task1 {
             // считываем остальные строки в цикле
             fileString = reader.readLine();
         }
-
-        /*
-         * } catch (FileNotFoundException e) {
-         * System.out.println("Ошибка! Файл " + fileName + "не найден!");
-         * } catch (IOException e) {
-         * System.out.println("Ошибка чтения файла: " + e.getMessage());
-         * }
-         */
-
     }
 }
