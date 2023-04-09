@@ -6,7 +6,7 @@ import OOP.seminar7.hw.classes.Agent;
 
 public class AgentView {
 
-    public void showMenu() {
+    public void showMainMenu() {
         // показать меню в консоли
         System.out.println("\nБД контрагентов\n----------------\nВыберите пункт меню:");
         System.out.println("1. Посмотреть список контрагентов;");

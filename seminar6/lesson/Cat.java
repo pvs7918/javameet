@@ -12,29 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cat {
-    /**
-     *
-     */
     private String name;
-    /**
-     *
-     */
     private String breed;
-    /**
-     *
-     */
     private String owner;
-    /**
-     *
-     */
     private List<Award> awards;
-
-    /**
-     * @param name
-     * @param breed
-     * @param owner
-     */
-    public void Cat(String name, String breed, String owner) {
+    
+    public Cat(String name, String breed, String owner) {
         this.name = name;
         this.breed = breed;
         this.owner = owner;

@@ -16,7 +16,9 @@ Set<K>
 
  */
 
- import seminar6.lesson.Cat;
+import seminar6.lesson.Cat;
+
+
 
 public class task2 {
     /**

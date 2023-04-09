@@ -1,24 +1,31 @@
 package OOP.seminar7.hw.classes;
 
 public abstract class Contact {
-    protected String name;
+    protected int id;
     protected String type;
+    protected String value;
 
-    public Contact(String name, String type) {
-        this.name = name;
+
+    public Contact(int id, String type, String value) {
+        this.id = id;
         this.type = type;
+        this.value = value;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
     public String getType() {
         return type;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
-        return "Contact [name=" + name + ", type=" + type + "]";
+        return "id=" + id + ", type=" + type + ", name=" + value;
     }
 }

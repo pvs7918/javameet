@@ -29,12 +29,26 @@ public class Presenter {
         model.load();
         //загружаем меню и через сканер получаем выбор нужного пункта меню
         Scanner sc = new Scanner(System.in);
+        String cur_menu_pos = ""; //текущее меню в формате "1,2" пустая строка означает выбрано главное меню
+        String cur_action = ""; //выбранное действие в текущем меню
         while (true) {
-            // выводим меню
-            view.showMenu();
+            //отображение выбранного пункта меню
+            switch(cur_menu_pos) {
+                case(""): //главное меню
+                    switch(cur_action) {
+                        case(""):
+                            view.showMainMenu();
+                            break;
+                    }
+
+                        view.showMainMenu();
+                    break;
+                case(""):
+            }
+            System.out.printf("Введите число для выбора нужного пункта меню: ");
             // выбираем пункт меню
             try {
-                System.out.printf("Введите число от 1 до 6, 0: ");
+                
                 if (sc.hasNextInt()) {
                     menuItem = sc.nextInt();
                     if (menuItem < 1 && menuItem > 6) {
@@ -51,6 +65,7 @@ public class Presenter {
                 System.out.println("Ошибка чтения пункта меню");
             }
 
+
             switch (menuItem) {
                 case 1:
                     showAllAgents();
@@ -62,12 +77,12 @@ public class Presenter {
                     showAStudentsAttendanceLess(25);
                     break;
             }
-            if (menuItem == 0) {
+            if (cur_menu_pos == "0") {
                 System.out.println("Программа завершена.");
+                sc.close();
                 break;
             }
         }
-        sc.close();
     }
 
     // Распечатать всех студентов и посещаемость каждого в процентах

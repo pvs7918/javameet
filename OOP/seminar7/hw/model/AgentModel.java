@@ -5,14 +5,14 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class AgentModel<Agent> implements DataModel {
+public class AgentModel implements DataModel<Agent> {
     private List<Agent> agents; // список агентов
-    private String path_db; //каталог местоположения БД
+    private String path_db; // каталог местоположения БД
     private String fnameAgents; // название файла с исходными данными об контрагентах
     private String fnameContacts; // название файла с исходными данными об контактах
-    
-    //контакты загружаем и сохраняем в данной модели,
-    //потому что так удобнее подвязать контакты к контрагентам
+
+    // контакты загружаем и сохраняем в данной модели,
+    // потому что так удобнее подвязать контакты к контрагентам
 
     public AgentModel(String path_db, String fnameAgents, String fnameContacts) {
         this.path_db = path_db;
@@ -21,10 +21,10 @@ public class AgentModel<Agent> implements DataModel {
     }
 
     @Override
-    public void add(Object rec) {
+    public void add(Agent rec) {
         // добавление новой записи в список agents
-        agents.add((Agent) rec);
-    }   
+        agents.add(rec);
+    }
 
     @Override
     public void save() {
@@ -77,7 +77,7 @@ public class AgentModel<Agent> implements DataModel {
 
         // открываем и читаем данные из файла об контактах
         //это делаем здесь потому что контакты связаны с контрагентами, подчиняются им
-        /*try (FileReader fr = new FileReader(fnameAgents)) {
+        try (FileReader fr = new FileReader(path_db + fnameContacts)) {
             Scanner scanner = new Scanner(fr);
             int i=0; //номер строки
             while (scanner.hasNextLine()) {
@@ -86,27 +86,37 @@ public class AgentModel<Agent> implements DataModel {
                 if (i>0) { // первую строку пропускаем, это шапка с названием полей
                     //расщепляем строку разделителем ; на поля
                     String[] fields = curRow.split(";");
-                    int curId = Integer.parseInt(fields[0].trim());
-                    String curContact_type = fields[1].trim();
-                    int curAgentId = Integer.parseInt(fields[2].trim());
+                    int curContact_Id = Integer.parseInt(fields[0].trim());
+                    int curAgent_Id = Integer.parseInt(fields[1].trim());
+                    String curContact_type = fields[2].trim();
+                    String curContact_Value = fields[3].trim();
                     //находим объект агента по его id
-                    Agent curAgent = getAgentById(curAgentId);
-                    String curValue = fields[3].trim();
+                    Agent curAgent = getAgentById(curAgent_Id);
+                    //добавляем контрагенту контакт нужного типа
                     switch(curContact_type) {
                         case ("address"):
-                            String country = fields[3].trim();    
-                            String products = fields[4].trim();
-                            AgentCompany agentCompany = new AgentCompany(curId, curAgent_type, curName, null, country, products);
-                            agents.add((Agent) agentCompany);
+                            curAgent.addContact(new ContactAddress(curContact_Id,
+                            curContact_type,curContact_Value));
                             break;
-                        case ("Person"):
-                            LocalDate birthdate = LocalDate.parse(fields[3].trim());
-                            AgentPerson agentPerson = new AgentPerson(curId, curAgent_type, curName, null, birthdate);
-                            agents.add((Agent) agentPerson);
+                        case ("email"):
+                            curAgent.addContact(new ContactMail(curContact_Id,
+                            curContact_type,curContact_Value));
                             break;   
+                        case ("phone"):
+                            curAgent.addContact(new ContactPhone(curContact_Id,
+                            curContact_type,curContact_Value));
+                            break;
+                        case ("telegram"):
+                            curAgent.addContact(new ContactTelegram(curContact_Id,
+                            curContact_type,curContact_Value));
+                            break;   
+                        case ("vk"):
+                            curAgent.addContact(new ContactVK(curContact_Id,
+                            curContact_type,curContact_Value));
+                            break;                            
                         default:
-                            System.out.println("Ошибка: Неизвестный тип объекта-контрагента" +
-                            curAgent_type + " в исходном файле" + fnameAgents);
+                            System.out.println("Ошибка: Неизвестный тип объекта-контакта" +
+                            curContact_type + " в исходном файле" + fnameContacts);
                             break;                         
                     }
                 }
@@ -115,8 +125,7 @@ public class AgentModel<Agent> implements DataModel {
             scanner.close();
         } catch (Exception ex) {
             System.out.println(ex.toString());
-        }*/
-
+        }
         return agents;
     }
 
@@ -127,10 +136,10 @@ public class AgentModel<Agent> implements DataModel {
 
     public Agent getAgentById(int curAgentId) {
         for (Agent item : agents) {
-            if (item.getId() == curAgentId) return item;
-            
+            if (item.getId() == curAgentId)
+                return item;
         }
-         
+        return null;
     }
 
     @Override
@@ -141,5 +150,5 @@ public class AgentModel<Agent> implements DataModel {
         }
         return "Agents list: [" + res + "]";
     }
- 
+
 }

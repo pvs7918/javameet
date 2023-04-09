@@ -23,7 +23,7 @@ public class AgentCompany extends Agent {
 
     @Override
     public String toString() {
-        return super.toString() + "country=" + country + ", products=" + products + ".";
+        return super.toString() + ",\ncountry=" + country + ", products=" + products + ".";
     }
 
 

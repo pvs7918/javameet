@@ -6,7 +6,7 @@ import java.util.*;
 import OOP.seminar7.hw.classes.*;
 
 
-public class ContactModel<Contact> implements DataModel{
+public class ContactModel implements DataModel<Contact>{
     private List<Contact> contacts; // список контактов
     private String filename; // название файла с исходными данными
 

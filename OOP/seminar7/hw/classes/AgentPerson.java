@@ -17,6 +17,6 @@ public class AgentPerson extends Agent {
 
     @Override
     public String toString() {
-        return super.toString() + "birthDate=" + birthDate + ".";
+        return super.toString() + ",\nbirthDate=" + birthDate + ".";
     }    
 }
