@@ -1,4 +1,4 @@
-package task0;
+package OOP.seminar2.lesson.task0;
 
 public class SquareShape implements Shape {
     private float side;

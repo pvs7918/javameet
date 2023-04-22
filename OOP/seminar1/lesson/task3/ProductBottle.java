@@ -1,3 +1,5 @@
+package OOP.seminar1.lesson.task3;
+
 public class ProductBottle extends Product {
     private float volume;
 

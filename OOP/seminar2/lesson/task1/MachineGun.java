@@ -1,4 +1,4 @@
-package task1;
+package OOP.seminar2.lesson.task1;
 
 public class MachineGun extends Weapon {
 

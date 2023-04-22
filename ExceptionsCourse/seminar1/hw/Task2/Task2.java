@@ -5,7 +5,7 @@
  Ответ:
  1. nullPointerException если при вызове sum2d(null) массив будет передан = null.
  
- 2. NumberFormatException если елемент не Integer либо null, возникнет при вызове
+ 2. NumberFormatException если элемент не Integer либо null, возникнет при вызове
  Integer.parseInt(arr[i][j])
  */
 
