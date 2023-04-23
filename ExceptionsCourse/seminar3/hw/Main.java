@@ -24,9 +24,9 @@ public class Main {
                     System.out.println("Данные персоны:\n" + person.toString());
                     // Сохранение персоны в файл
                     if (person.saveToFile(filesFolder)) {
-                        System.out.println("Персона успешно сохранена в каталоге " + filesFolder + "\n");
+                        System.out.println("Персона успешно сохранена в файл в каталоге " + filesFolder + "\n");
                     } else {
-                        System.out.println("Ошибка при добавлении персоны.\n");
+                        System.out.println("Ошибка при сохранении персоны в файл.\n");
                     } 
                 }
             } catch (MyQuitException e) {
@@ -36,14 +36,14 @@ public class Main {
             } catch (NullPointerException e) {
                 System.out.println("Ошибка - получено значение null объекта person. Добавление прервано!");
             } catch (MyUserInputParsingException e) {
-                System.out.println("Ошибка парсинга данных при чтении файлов! Добавление прервано!");
+                System.out.println("Ошибка парсинга данных при чтении файлов - " + e.getMessage() + "!\nДобавление прервано!");
             }
 
         }
         sc.close();
     }
 
-    public static Person inputPerson(Scanner sc) throws MyQuitException, MyUserInputParsingException, RuntimeException {
+    public static Person inputPerson(Scanner sc) throws MyQuitException, MyUserInputParsingException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
                 "dd.MM.yyyy"); // формат даты
         
@@ -90,8 +90,7 @@ public class Main {
         } catch (MyUserInputParsingException e) {
             //пробрасываем это исключение для обработки в main
             throw new MyUserInputParsingException(e.getMessage());
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return null;
         }
     }
